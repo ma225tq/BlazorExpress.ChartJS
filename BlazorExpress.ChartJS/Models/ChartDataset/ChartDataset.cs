@@ -122,8 +122,8 @@ public class ChartDataset<TData> : IChartDataset
     [AddedVersion("1.0.0")]
     [DefaultValue(null)]
     [Description("Gets or sets the chart type. This value is auto-set based on the chart type.")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Type { get; protected set; }
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
 
     #endregion
 }

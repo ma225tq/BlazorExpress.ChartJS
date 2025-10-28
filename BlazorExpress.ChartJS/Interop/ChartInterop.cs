@@ -18,5 +18,7 @@ public class ChartInterop
 
     public const string Update = Prefix + "update";
 
+    public const string UpdateNoAnimation = Prefix + "updateNoAnimation";
+
     #endregion
 }

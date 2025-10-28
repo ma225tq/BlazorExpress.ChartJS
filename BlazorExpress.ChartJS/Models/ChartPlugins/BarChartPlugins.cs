@@ -6,6 +6,13 @@ public class BarChartPlugins : ChartPlugins
 
     public BarChartDataLabels Datalabels { get; set; } = new();
 
+    /// <summary>
+    /// Annotation plugin configuration for adding lines, boxes, and other annotations to the chart
+    /// <see href="https://www.chartjs.org/chartjs-plugin-annotation/latest/guide/"/>
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public ChartAnnotation? Annotation { get; set; }
+
     #endregion
 }
 

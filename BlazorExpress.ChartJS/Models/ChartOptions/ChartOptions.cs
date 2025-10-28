@@ -197,6 +197,8 @@ public class Scales
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] public ChartAxes? Y { get; set; } = new();
 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] public ChartAxes? Y2 { get; set; }
+
     #endregion
 }
 
@@ -218,6 +220,18 @@ public class ChartAxes
     #region Properties, Indexers
 
     public bool BeginAtZero { get; set; } = true;
+
+    /// <summary>
+    /// The ID of the axis. Required for multiple axes of the same type.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Id { get; set; }
+
+    /// <summary>
+    /// Position of the axis. Can be 'left', 'right', 'top', or 'bottom'.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Position { get; set; }
 
     /// <summary>
     /// Define options for the border that run perpendicular to the axis.

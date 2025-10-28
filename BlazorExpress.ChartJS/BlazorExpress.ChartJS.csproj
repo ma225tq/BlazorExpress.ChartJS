@@ -2,9 +2,9 @@
 
   <PropertyGroup>
 
-    <PackageId>BlazorExpress.ChartJS</PackageId>
-    <Version>1.2.0</Version>
-    <PackageVersion>1.2.0</PackageVersion>
+    <PackageId>Ma225tq.BlazorExpress.ChartJS</PackageId>
+    <Version>1.2.1</Version>
+    <PackageVersion>1.2.1</PackageVersion>
 
     <PackageIcon>logo.png</PackageIcon>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -12,10 +12,10 @@
     <RepositoryUrl>https://github.com/BlazorExpress/BlazorExpress.ChartJS</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Blazor, BlazorExpress, Charts, BlazorBarChart, BlazorDoughnutChart, BlazorLineChart, BlazorPieChart</PackageTags>
-    <Description>An open-source, production-ready Blazor charts component library built on the Blazor and Chart.js JavaScript library.</Description>
-    <Authors>Vikram Reddy</Authors>
+    <Description>Modified version of BlazorExpress.ChartJS</Description>
+    <Authors>ma225tq, Vikram Reddy</Authors>
     <Company>Blazor Express</Company>
-    <Copyright>Copyright © 2025 Blazor Express</Copyright>
+    <Copyright>Copyright © 2025 Blazor Express, Copyright © 2025 ma22tq</Copyright>
 
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>

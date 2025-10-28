@@ -123,6 +123,25 @@ public abstract class ChartComponentBase : BlazorExpressComponentCore, IDisposab
         await JSRuntime.InvokeVoidAsync(ChartInterop.Update, Id, GetChartType(), _data, chartOptions);
     }
 
+    /// <summary>
+    /// Asynchronously updates the chart with the specified data and options WITHOUT animation.
+    /// </summary>
+    /// <remarks>This method updates the chart by invoking a JavaScript function to render the new data and
+    /// options without animation. Use this for real-time streaming updates to avoid visual jank.</remarks>
+    /// <param name="chartData">The data to be displayed on the chart. Must not be null and must contain at least one dataset.</param>
+    /// <param name="chartOptions">The options to configure the chart's appearance and behavior.</param>
+    /// <returns></returns>
+    [AddedVersion("1.0.0")]
+    [Description("Asynchronously updates the chart with the specified data and options without animation.")]
+    public virtual async Task UpdateNoAnimationAsync(ChartData chartData, IChartOptions chartOptions)
+    {
+        if (chartData is null || chartData.Datasets is null || !chartData.Datasets.Any())
+            return;
+
+        var _data = GetChartDataObject(chartData);
+        await JSRuntime.InvokeVoidAsync(ChartInterop.UpdateNoAnimation, Id, GetChartType(), _data, chartOptions);
+    }
+
     protected string GetChartType() =>
         _chartType switch
         {

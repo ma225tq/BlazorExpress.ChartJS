@@ -70,6 +70,20 @@ public class LineChartOptions : ChartOptions
     [Description("Gets or sets the collection of scales used for measurement or calibration.")]
     public Scales Scales { get; set; } = new();
 
+    /// <summary>
+    /// Gets or sets parsing configuration for structured data objects.
+    /// Define keys for extracting values from data objects (e.g., {yAxisKey: "y"}).
+    /// <para>
+    /// Default value is <see langword="null"/>.
+    /// </para>
+    /// <see href="https://www.chartjs.org/docs/latest/general/data-structures.html#parsing" />
+    /// </summary>
+    [AddedVersion("1.0.0")]
+    [DefaultValue(null)]
+    [Description("Gets or sets parsing configuration for structured data objects.")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public object? Parsing { get; set; }
+
     #endregion
 
     //tooltips -> mode, intersect

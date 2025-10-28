@@ -155,9 +155,28 @@ public partial class LineChart : ChartComponentBase
         if (chartOptions is null)
             throw new ArgumentNullException(nameof(chartOptions));
 
-        var datasets = chartData.Datasets.OfType<LineChartDataset>();
+        // Support mixed charts - pass all datasets through, not just LineChartDataset
+        var datasets = new List<object>();
+        var hasNonLineDatasets = false;
+        
+        foreach (var dataset in chartData.Datasets)
+        {
+            if (dataset is LineChartDataset lineDs)
+                datasets.Add(lineDs);
+            else if (dataset is BarChartDataset barDs)
+            {
+                datasets.Add(barDs);
+                hasNonLineDatasets = true;
+            }
+            // Add other dataset types as needed for mixed charts
+        }
+        
+        // Use "mixed" chart type only when there are actually mixed dataset types
+        var chartType = hasNonLineDatasets ? "mixed" : GetChartType();
+        
         var data = new { chartData.Labels, Datasets = datasets };
-        await JSRuntime.InvokeVoidAsync(LineChartInterop.Initialize, Id, GetChartType(), data, (LineChartOptions)chartOptions, plugins);
+        await JSRuntime.InvokeVoidAsync(LineChartInterop.Initialize, Id, chartType, data, (LineChartOptions)chartOptions, plugins);
+
     }
 
     /// <summary>
@@ -182,9 +201,27 @@ public partial class LineChart : ChartComponentBase
         if (chartOptions is null)
             throw new ArgumentNullException(nameof(chartOptions));
 
-        var datasets = chartData.Datasets.OfType<LineChartDataset>();
+        // Support mixed charts - pass all datasets through, not just LineChartDataset
+        var datasets = new List<object>();
+        var hasNonLineDatasets = false;
+        
+        foreach (var dataset in chartData.Datasets)
+        {
+            if (dataset is LineChartDataset lineDs)
+                datasets.Add(lineDs);
+            else if (dataset is BarChartDataset barDs)
+            {
+                datasets.Add(barDs);
+                hasNonLineDatasets = true;
+            }
+            // Add other dataset types as needed for mixed charts
+        }
+        
+        // Use "mixed" chart type only when there are actually mixed dataset types
+        var chartType = hasNonLineDatasets ? "mixed" : GetChartType();
+        
         var data = new { chartData.Labels, Datasets = datasets };
-        await JSRuntime.InvokeVoidAsync(LineChartInterop.Update, Id, GetChartType(), data, (LineChartOptions)chartOptions);
+        await JSRuntime.InvokeVoidAsync(LineChartInterop.Update, Id, chartType, data, (LineChartOptions)chartOptions);
     }
 
     #endregion
